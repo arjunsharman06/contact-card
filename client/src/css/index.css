@@ -1,0 +1,9 @@
+/* Creating renaming the asset folder to src */
+/* creating index.css and adding all the CSS file links */
+/* Replacing the assets folder name with src file in index.html */
+/* Move src folder & index.html inside client directory  */
+/* Do npm init in client folder*/
+
+@import './card.css';
+@import './form.css';
+@import './header.css';
