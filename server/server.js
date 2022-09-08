@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 3001;
 //This will work
 app.use(express.urlencoded({ extended: true }));
 // for using the client folder in server.js
-app.use(express.static('../client'));
+// app.use(express.static('../client'));
+// Getting the HTML route in server.js from dist
+app.use(express.static('../client/dist/'));
 app.use(express.json());
 
 // Getting the HTML route in server.js
