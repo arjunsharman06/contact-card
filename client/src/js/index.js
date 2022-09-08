@@ -19,8 +19,12 @@ import Bear from '../images/bear.png';
 import Dog from '../images/dog.png';
 import MyLogo from '../images/batman.jpg';
 
+// Importing the indexeDB
+import { initdb } from './database';
+
 // Inserting the images during the page load
 window.addEventListener('load', function () {
+  initdb();
   document.getElementById('logo').src = Logo;
   // document.getElementById('logo').src = MyLogo;
   document.getElementById('bearThumbnail').src = Bear;
