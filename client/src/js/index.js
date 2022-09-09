@@ -57,7 +57,6 @@ form.addEventListener('submit', (event) => {
   if (submitBtnToUpdate == false) {
     postDb(name, email, phone, profile);
   } else {
-    debugger;
     // Obtains values passed into the form element
     let name = document.getElementById('name').value;
     let phone = document.getElementById('phone').value;
@@ -91,7 +90,7 @@ window.deleteCard = (e) => {
 
 // Update
 window.editCard = (e) => {
-  let profileId = parseInt(e.dataset.id);
+  profileId = parseInt(e.dataset.id);
   console.log(profileId);
 
   // Grabs information to pre-populate edit form
