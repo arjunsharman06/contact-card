@@ -6,6 +6,12 @@ const path = require('path');
 // importing html-webpack-plugin for gernerating HTML
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// Class of Workbox plugin for service worker
+//const WorkboxPlugin = require('workbox-webpack-plugin');
+
+// Using InjectManifest for the service worker creation
+const { InjectManifest } = require('workbox-webpack-plugin');
+
 module.exports = {
   // Entry point of the webpack
   entry: './src/js/index.js',
@@ -52,6 +58,42 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
       title: 'Webpack Plugin',
+    }),
+    // New plugin added
+    // new WorkboxPlugin.GenerateSW({
+    //   // excluding images
+    //   // Do not precache images
+    //   exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+
+    //   // Define runtime caching rules.
+    //   //Only cache images which are used in a specfic window
+    //   runtimeCaching: [
+    //     {
+    //       // Match any request that ends with .png, .jpg, .jpeg or .svg.
+    //       urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+
+    //       // Apply a cache-first strategy.
+    //       handler: 'CacheFirst',
+
+    //       options: {
+    //         // Use a custom cache name.
+    //         cacheName: 'images',
+
+    //         // Only cache 1 images
+    //         expiration: {
+    //           maxEntries: 1,
+    //         },
+    //       },
+    //     },
+    //   ],
+    // }),
+
+    // InjectionManifest plugin
+    new InjectManifest({
+      // This is the raw file that will be bundled
+      swSrc: './src/sw.js',
+      //This is the file name where your service worker will show in the bundle.
+      swDest: 'service-worker.js',
     }),
   ],
   //   helps the webpack to priotize the build
