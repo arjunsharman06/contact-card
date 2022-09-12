@@ -12,6 +12,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // Using InjectManifest for the service worker creation
 const { InjectManifest } = require('workbox-webpack-plugin');
 
+// Plugins for install
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+
 module.exports = {
   // Entry point of the webpack
   entry: './src/js/index.js',
@@ -94,6 +97,30 @@ module.exports = {
       swSrc: './src/sw.js',
       //This is the file name where your service worker will show in the bundle.
       swDest: 'service-worker.js',
+    }),
+
+    // installation plugins details
+    new WebpackPwaManifest({
+      name: 'Contact Cards Application',
+      short_name: 'Contact Cards',
+      description: 'Keep track of contacts!',
+      background_color: '#7eb4e2',
+      theme_color: '#7eb4e2',
+      start_url: './',
+      publicPath: './',
+      icons: [
+        {
+          src: path.resolve('src/images/icon-manifest.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+          destination: path.join('assets', 'icons'),
+        },
+        {
+          src: path.resolve('src/images/icon-manifest.png'),
+          size: '1024x1024',
+          destination: path.join('assets', 'icons'),
+          purpose: 'maskable',
+        },
+      ],
     }),
   ],
   //   helps the webpack to priotize the build
